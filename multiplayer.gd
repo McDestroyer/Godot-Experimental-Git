@@ -61,6 +61,7 @@ func stop_game():
 		c.queue_free()
 	
 	multiplayer.multiplayer_peer.close()
+	multiplayer.server_disconnected.disconnect(stop_game)
 
 # Call this function deferred and only on the main authority (server).
 func change_level(scene: PackedScene):
