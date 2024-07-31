@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cw8w6clmxedi6"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_hwwnj"]
-[ext_resource type="Script" path="res://player_input.gd" id="2_ju3m6"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_v2537"]
+[ext_resource type="Script" path="res://player/player_input.gd" id="2_4l27g"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fb1vy"]
 properties/0/path = NodePath(".:player")
@@ -24,7 +24,8 @@ properties/0/replication_mode = 1
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jab13"]
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_hwwnj")
+collision_layer = 2
+script = ExtResource("1_v2537")
 
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_fb1vy")
@@ -32,7 +33,7 @@ replication_config = SubResource("SceneReplicationConfig_fb1vy")
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath(".")
 replication_config = SubResource("SceneReplicationConfig_hoavk")
-script = ExtResource("2_ju3m6")
+script = ExtResource("2_4l27g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37qaq")

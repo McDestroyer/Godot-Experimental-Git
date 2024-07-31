@@ -14,6 +14,10 @@ run/main_scene="res://multiplayer.tscn"
 config/features=PackedStringArray("4.2")
 boot_splash/image="res://JF Logo 2.0 3D Colored.png"
 
+[autoload]
+
+ClientSettings="*res://settings/client_settings.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

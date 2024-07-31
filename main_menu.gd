@@ -27,7 +27,7 @@ func _on_host_pressed():
 
 func _on_connect_pressed():
 	# Start as client
-	var txt : String = $UI/Net/Options/Remote.text
+	var txt : String = $MainMenu/Net/Options/Remote.text
 	if txt == "":
 		OS.alert("Need a remote to connect to.")
 		return
@@ -42,7 +42,7 @@ func _on_connect_pressed():
 
 func start_game():
 	# Hide the UI and unpause to start the game.
-	$UI.hide()
+	$MainMenu.hide()
 	get_tree().paused = false
 	# Only change level on the server.
 	# Clients will instantiate the level via the spawner.
@@ -51,7 +51,7 @@ func start_game():
 
 func stop_game():
 	# Show the UI and pause to stop the game.
-	$UI.show()
+	$MainMenu.show()
 	get_tree().paused = true
 	
 	# Remove old level if any.
