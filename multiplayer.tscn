@@ -75,6 +75,23 @@ popup/item_1/id = 1
 layout_mode = 2
 text = "Touch Controls"
 
+[node name="SensitivityBox" type="VBoxContainer" parent="MainMenu/Net/SettingsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SensitivityLabel" type="Label" parent="MainMenu/Net/SettingsBar/SensitivityBox"]
+layout_mode = 2
+text = "Rotational sensitivity"
+
+[node name="Sensitivity" type="SpinBox" parent="MainMenu/Net/SettingsBar/SensitivityBox"]
+layout_mode = 2
+max_value = 5.0
+step = 0.0
+allow_greater = true
+alignment = 1
+prefix = "Sensitivity:"
+custom_arrow_step = 0.125
+
 [node name="Save" type="Button" parent="MainMenu/Net/SettingsBar"]
 layout_mode = 2
 text = "Save"
@@ -88,5 +105,6 @@ text = "Load"
 [connection signal="text_changed" from="MainMenu/Net/SettingsBar/Username" to="MainMenu/Net/SettingsBar" method="_on_username_text_changed"]
 [connection signal="item_selected" from="MainMenu/Net/SettingsBar/CameraType" to="MainMenu/Net/SettingsBar" method="_on_option_button_item_selected"]
 [connection signal="toggled" from="MainMenu/Net/SettingsBar/TouchToggle" to="MainMenu/Net/SettingsBar" method="_on_touch_toggle_toggled"]
+[connection signal="value_changed" from="MainMenu/Net/SettingsBar/SensitivityBox/Sensitivity" to="MainMenu/Net/SettingsBar" method="_on_sensitivity_value_changed"]
 [connection signal="button_up" from="MainMenu/Net/SettingsBar/Save" to="MainMenu/Net/SettingsBar" method="_on_save_button_up"]
 [connection signal="button_up" from="MainMenu/Net/SettingsBar/Load" to="MainMenu/Net/SettingsBar" method="_on_load_button_up"]

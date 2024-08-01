@@ -13,7 +13,6 @@ func _process(delta):
 func _on_username_text_changed(new_text):
 	ClientSettings.username = new_text
 
-
 func _on_option_button_item_selected(index):
 	match index:
 		0:
@@ -23,9 +22,11 @@ func _on_option_button_item_selected(index):
 		var default:
 			print("??? How did you select an option which does not exist?")
 
-
 func _on_touch_toggle_toggled(toggled_on):
 	ClientSettings.touch = toggled_on
+
+func _on_sensitivity_value_changed(value):
+	ClientSettings.sensitivity = value
 
 
 func _on_save_button_up():
@@ -48,3 +49,7 @@ func setup():
 	
 	# Set up Touch Toggle
 	$TouchToggle.button_pressed = ClientSettings.touch
+	
+	# Set up Sensitivity
+	$SensitivityBox/Sensitivity.value = ClientSettings.sensitivity
+
