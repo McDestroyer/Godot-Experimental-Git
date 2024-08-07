@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const CENTER_POS = Vector3(0,0,0)
+const CENTER_POS = Vector3(0,1.5,0)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -44,6 +44,7 @@ func _physics_process(delta):
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 				velocity.z = move_toward(velocity.z, 0, SPEED)
+			print(position)
 		
 		# Orbital cam movement
 		ClientSettings.movement_types.ORBIT:
@@ -52,9 +53,21 @@ func _physics_process(delta):
 			var y_axis := Vector3(0,1,0)
 			var r_speed := ClientSettings.sensitivity / 3000
 			
-			position = CENTER_POS + (position - CENTER_POS).rotated(y_axis, input.direction.x * r_speed / delta)
-			position = CENTER_POS + (position - CENTER_POS).rotated(x_axis, input.direction.y * r_speed / delta)
-			look_at(CENTER_POS)
+			position = CENTER_POS
+			
+			rotation = Vector3(
+				min(deg_to_rad(30), max(deg_to_rad(-90),
+					rotation.x + input.direction.y * r_speed / delta)
+				),
+				rotation.y + input.direction.x * r_speed / delta,
+				0
+			)
+			
+			$Camera3D.fov = max(10, min(120, $Camera3D.fov + input.vertical))
+			
+			#position = CENTER_POS + (position - CENTER_POS).rotated(y_axis, input.direction.x * r_speed / delta)
+			#position = CENTER_POS + (position - CENTER_POS).rotated(x_axis, input.direction.y * r_speed / delta)
+			#look_at(CENTER_POS)
 		
 
-	move_and_slide()
+	#move_and_slide()

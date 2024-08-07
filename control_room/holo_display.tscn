@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://crxe7bjw5jn5v"]
+
+[ext_resource type="Script" path="res://control_room/holo_display.gd" id="1_ucfqo"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_q1o6k"]
+properties/0/path = NodePath(".:linear_velocity")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:angular_velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="HoloDisplay" type="Node3D"]
+script = ExtResource("1_ucfqo")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_q1o6k")

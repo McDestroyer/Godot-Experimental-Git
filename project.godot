@@ -17,11 +17,16 @@ boot_splash/image="res://JF Logo 2.0 3D Colored.png"
 [autoload]
 
 ClientSettings="*res://settings/client_settings.gd"
+ConsoleDataManager="*res://addons/simply-console/singletons/console_data_manager.gd"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/draw3d/plugin.cfg", "res://addons/simply-console/plugin.cfg")
 
 [input]
 

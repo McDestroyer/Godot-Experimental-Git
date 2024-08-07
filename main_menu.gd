@@ -47,7 +47,7 @@ func start_game():
 	# Only change level on the server.
 	# Clients will instantiate the level via the spawner.
 	if multiplayer.is_server():
-		change_level.call_deferred(load("res://level.tscn"))
+		change_level.call_deferred(load("res://control_room/level.tscn"))
 
 func stop_game():
 	# Show the UI and pause to stop the game.

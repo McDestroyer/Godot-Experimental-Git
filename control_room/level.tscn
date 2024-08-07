@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://efwjm4hfeqf2"]
+
+[ext_resource type="PackedScene" uid="uid://c6br8h3si2ypg" path="res://sphere.tscn" id="1_8awbr"]
+[ext_resource type="Script" path="res://control_room/level.gd" id="1_p4gvl"]
+[ext_resource type="PackedScene" uid="uid://crxe7bjw5jn5v" path="res://control_room/holo_display.tscn" id="3_xpy11"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_s66iy"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7cbpt"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgp6f"]
+albedo_color = Color(0.164706, 0.478431, 1, 1)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_p4gvl")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35697, 3.4425)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_s66iy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_7cbpt")
+surface_material_override/0 = SubResource("StandardMaterial3D_kgp6f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.4214, 0)
+light_energy = 10.0
+omni_range = 20.2379
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="Sphere" parent="Objects" instance=ExtResource("1_8awbr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16101, 2.42886, 0)
+
+[node name="Sphere2" parent="Objects" instance=ExtResource("1_8awbr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.09399, 4.03106, -3.25513)
+
+[node name="HoloDisplay" parent="Objects" instance=ExtResource("3_xpy11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+rotation_order = 0
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player/player.tscn")
+spawn_path = NodePath("../Players")
+spawn_limit = 4
